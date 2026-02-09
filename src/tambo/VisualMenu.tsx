@@ -81,17 +81,21 @@ export function VisualMenu() {
 
     return (
         <section id="visual-menu">
-            <div
+            <motion.div
                 ref={containerRef}
                 className="menu-scroll"
                 data-lenis-prevent // Hint to Lenis to let us handle this area
+                initial={{ opacity: 0, scale: 0.98, y: 40 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+                transition={{ duration: 1.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             >
                 {DISHES.map((dish) => (
                     <DishCard key={dish.id} dish={dish} />
                 ))}
                 {/* Spacer for scroll end */}
                 <div style={{ minWidth: "10vw" }} />
-            </div>
+            </motion.div>
         </section>
     );
 }

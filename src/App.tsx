@@ -297,7 +297,7 @@ function App() {
         <main>
           <Hero />
 
-          <Section id="menu" title="Continental Classics">
+          <Section id="menu" title="Signature Menu">
             <p>Our menu is a curated selection of continental masterpieces.</p>
             <VisualMenu />
           </Section>
