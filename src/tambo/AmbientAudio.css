@@ -1,0 +1,51 @@
+.ambient-audio-control {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 90;
+    opacity: 0.6;
+    transition: opacity 0.5s ease;
+}
+
+.ambient-audio-control:hover {
+    opacity: 1;
+}
+
+.audio-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    outline: none;
+}
+
+.equalizer {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 14px;
+}
+
+.bar {
+    width: 2px;
+    background-color: var(--text-secondary);
+    border-radius: 1px;
+    min-height: 2px;
+    transition: background-color 0.5s ease;
+}
+
+.audio-toggle.active .bar {
+    background-color: var(--text-accent);
+    /* Gold when active */
+}
+
+/* Mobile positioning */
+@media (max-width: 768px) {
+    .ambient-audio-control {
+        bottom: 1.5rem;
+        left: 1.5rem;
+    }
+}

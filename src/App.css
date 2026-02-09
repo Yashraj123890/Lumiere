@@ -1,0 +1,288 @@
+/* Layout Styles */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 0;
+  z-index: 100;
+  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.9), transparent);
+  backdrop-filter: blur(5px);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 3.5rem;
+  /* Increased spacing */
+}
+
+nav a {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-primary);
+  opacity: 0.6;
+  position: relative;
+  padding-bottom: 5px;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--text-accent);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+nav a:hover {
+  opacity: 1;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Hero Section */
+.hero-section {
+  height: 100vh;
+  min-height: 800px;
+  /* Prevent it from being too short on small screens */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 0;
+  /* Override any padding if present */
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1514362545857-3bc16549766b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+  /* Placeholder */
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  opacity: 0.7;
+  margin-top: 1rem;
+  max-width: 800px;
+}
+
+/* Layout Styles */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 3rem 0;
+  z-index: 100;
+  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.8) 0%, transparent 100%);
+  transition: background 0.5s ease;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1800px;
+  /* Wider header */
+}
+
+/* ... existing styles ... */
+
+.content-section {
+  padding: var(--section-padding);
+  position: relative;
+  min-height: 80vh;
+  /* Ensure sections take up significant vertical space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Elegant Section Divider */
+.content-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  /* Minimal width */
+  height: 1px;
+  background: var(--text-secondary);
+  /* Solid color, handled by opacity */
+  opacity: 0.15;
+  /* Barely visible */
+}
+
+.content-section:last-of-type::after {
+  display: none;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 6rem;
+  /* Increased margin */
+  color: var(--text-accent);
+  position: relative;
+  display: inline-block;
+  align-self: center;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 1px;
+  background-color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+/* Typography refinements */
+p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  /* Increased line height */
+  margin-bottom: 2rem;
+  max-width: 60ch;
+  /* Optimal reading width */
+  font-size: 1.1rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Floating Chat Interface - Hidden for Cinematic Experience */
+.floating-chat {
+  display: none;
+}
+
+.chat-interface {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.message {
+  max-width: 85%;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.message.user {
+  align-self: flex-end;
+  background-color: var(--text-accent);
+  color: var(--bg-primary);
+  border-bottom-right-radius: 2px;
+}
+
+.message.assistant {
+  align-self: flex-start;
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border-bottom-left-radius: 2px;
+}
+
+.chat-input {
+  display: flex;
+  padding: 1rem;
+  border-top: 1px solid var(--glass-border);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.chat-input input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.chat-input button {
+  color: var(--text-accent);
+  font-size: 1.2rem;
+  padding: 0 0.5rem;
+  transition: transform 0.2s;
+}
+
+.chat-input button:hover:not(:disabled) {
+  transform: translateX(3px);
+}
+
+.greeting-card {
+  margin-top: 0.5rem;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--text-accent);
+  border-radius: 8px;
+}
+
+.greeting-card h3 {
+  color: var(--text-accent);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}

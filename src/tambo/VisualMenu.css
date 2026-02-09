@@ -1,0 +1,136 @@
+/* Visual Menu - Editorial Scroll */
+#visual-menu {
+    /* Break out of parent container to span full viewport width */
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    position: relative;
+    left: 0;
+}
+
+.menu-scroll {
+    display: flex;
+    gap: 120px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    padding: 120px 10vw;
+
+    /* Additional styles to match the desired behavior */
+    cursor: grab;
+    /* Hide scrollbar standard */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.menu-scroll:active {
+    cursor: grabbing;
+}
+
+.menu-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.editorial-dish-card {
+    width: 60vw;
+    /* Dominant card size */
+    max-width: 600px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.editorial-image-frame {
+    width: 100%;
+    aspect-ratio: 4/5;
+    /* Consistent portrait ratio */
+    overflow: hidden;
+    position: relative;
+    border-radius: 2px;
+    background-color: var(--bg-secondary);
+}
+
+.editorial-image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.85) contrast(1.1) saturate(0.9);
+    /* Moody treatment */
+    transition: filter 0.8s ease;
+}
+
+.moody-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    pointer-events: none;
+}
+
+.editorial-dish-card:hover img {
+    filter: brightness(0.95) contrast(1.05) saturate(1);
+    /* Lift slightly on hover */
+}
+
+.editorial-dish-info {
+    text-align: left;
+    padding: 0 0.5rem;
+}
+
+.editorial-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.8rem;
+}
+
+.editorial-header h3 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    color: var(--text-primary);
+    font-weight: 400;
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+.editorial-header .price {
+    font-family: var(--font-body);
+    color: var(--text-secondary);
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+.description {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    line-height: 1.5;
+    margin: 0;
+    font-style: italic;
+    /* Editorial touch */
+}
+
+/* Missing Image Placeholder */
+.no-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-tertiary);
+    /* Slightly lighter than card bg */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.placeholder-text {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    color: var(--text-accent);
+    opacity: 0.5;
+    font-style: italic;
+    letter-spacing: -0.04em;
+    text-align: center;
+    padding: 1rem;
+}
