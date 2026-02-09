@@ -52,11 +52,13 @@ nav a::after {
   transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-nav a:hover {
+nav a:hover,
+nav a.active {
   opacity: 1;
 }
 
-nav a:hover::after {
+nav a:hover::after,
+nav a.active::after {
   width: 100%;
 }
 

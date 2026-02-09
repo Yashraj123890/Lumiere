@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Lenis from "lenis";
 import { TamboProvider, useTamboThread, useTamboThreadInput } from "@tambo-ai/react";
 import { components } from "./tambo/components";
@@ -26,7 +26,64 @@ const TAMBO_API_KEY = key || "dummy-key-to-prevent-crash";
 
 // --- Components ---
 
+// Extend window interface for Lenis global access if needed
+declare global {
+  interface Window {
+    lenis: Lenis;
+  }
+}
+
 function Header() {
+  const [activeSection, setActiveSection] = useState<string>("");
+
+  useEffect(() => {
+    // 1. Setup Intersection Observer for Active State
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -50% 0px", // Trigger when section is near the middle/top
+      threshold: 0.1
+    };
+
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const sections = document.querySelectorAll("section[id]");
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    setActiveSection(targetId.replace("#", ""));
+
+    // 2. Immediate, Confident Scroll
+    // Using Lenis directly allows for a precise curve without browser lag
+    const targetElement = document.querySelector(targetId);
+    if (targetElement && window.lenis) {
+      window.lenis.scrollTo(targetElement as HTMLElement, {
+        offset: -100, // Account for header height
+        duration: 1.5, // Total duration for the "premium" feel
+        // Custom easing: starts fast (immediate response), then slows smoothly
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        lock: true, // Prevent user fighting the scroll during the transition
+      });
+    }
+  };
+
+  const navLinks = [
+    { id: "menu", label: "Menu" },
+    { id: "reservations", label: "Reservations" },
+    { id: "chefs", label: "Chefs" },
+    { id: "lounge", label: "VIP Lounge" },
+  ];
+
   return (
     <motion.header
       initial={{ y: -100, opacity: 0 }}
@@ -38,10 +95,17 @@ function Header() {
         <div className="logo">LUMIÈRE</div>
         <nav>
           <ul>
-            <li><a href="#menu">Menu</a></li>
-            <li><a href="#reservations">Reservations</a></li>
-            <li><a href="#chefs">Chefs</a></li>
-            <li><a href="#lounge">VIP Lounge</a></li>
+            {navLinks.map((link) => (
+              <li key={link.id}>
+                <a
+                  href={`#${link.id}`}
+                  onClick={(e) => handleNavClick(e, `#${link.id}`)}
+                  className={activeSection === link.id ? "active" : ""}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>
@@ -204,7 +268,6 @@ function App() {
     });
 
     // Make lenis globally accessible
-    // @ts-ignore
     window.lenis = lenis;
 
     function raf(time: number) {
