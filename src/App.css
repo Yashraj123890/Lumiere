@@ -175,8 +175,8 @@ nav a.active::after {
   /* Increased margin */
   color: var(--text-accent);
   position: relative;
-  display: inline-block;
-  align-self: center;
+  display: block;
+  width: 100%;
 }
 
 .section-title::after {
