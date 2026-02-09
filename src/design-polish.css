@@ -95,3 +95,21 @@ nav a:hover {
     background-color: rgba(212, 175, 55, 0.03);
     /* Barely visible tint */
 }
+
+/* Subtle Concept Footer */
+.concept-footer {
+    padding: 3rem 0 5rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    margin-top: 4rem;
+}
+
+.concept-line {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0.3;
+    /* Very mute */
+    letter-spacing: 0.08em;
+    font-weight: 300;
+}
