@@ -314,6 +314,19 @@ function App() {
           <Section id="lounge" title="VIP Lounge">
             <VIPLounge />
           </Section>
+
+          {/* Final Quiet Moment */}
+          <footer className="concept-footer">
+            <motion.p
+              className="concept-line"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 0.3 }}
+              viewport={{ once: true }}
+              transition={{ duration: 2, delay: 0.5 }}
+            >
+              An exploration in restraint.
+            </motion.p>
+          </footer>
         </main>
 
         {/* Floating Chat Interface */}

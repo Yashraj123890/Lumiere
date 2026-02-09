@@ -25,18 +25,6 @@ export function Reservations() {
                     Book a Table
                 </a>
             </motion.div>
-
-            <motion.div
-                className="concept-footer"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.5, delay: 1 }}
-            >
-                <p className="concept-line">
-                    An exploration of silence, space, and shadow in digital hospitality.
-                </p>
-            </motion.div>
         </div>
     );
 }
