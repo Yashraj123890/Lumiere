@@ -40,8 +40,10 @@ function Header() {
     // 1. Setup Intersection Observer for Active State
     const observerOptions = {
       root: null,
-      rootMargin: "-20% 0px -50% 0px", // Trigger when section is near the middle/top
-      threshold: 0.1
+      // Focus detection on the top area of the screen where content lands
+      // this prevents early triggering of bottom sections
+      rootMargin: "-15% 0px -60% 0px",
+      threshold: 0
     };
 
     const observerCallback: IntersectionObserverCallback = (entries) => {
@@ -68,11 +70,11 @@ function Header() {
     const targetElement = document.querySelector(targetId);
     if (targetElement && window.lenis) {
       window.lenis.scrollTo(targetElement as HTMLElement, {
-        offset: -100, // Account for header height
-        duration: 1.5, // Total duration for the "premium" feel
+        offset: -90, // Tighter offset to account for updated header height
+        duration: 1.2, // Slightly faster for decisive feel
         // Custom easing: starts fast (immediate response), then slows smoothly
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        lock: true, // Prevent user fighting the scroll during the transition
+        lock: false, // Allow user control if needed, feels less "stuck"
       });
     }
   };
